@@ -26,6 +26,20 @@ export interface StacksProvider {
    */
   authenticationRequest(payload: string): Promise<string>;
 
+  /**
+   * Get the currently selected network from the wallet
+   *
+   * @returns a Network object, e.g., {"url":"https://stacks-node-api.testnet.stacks.co","name":"Testnet","chainId":2147483648}
+   *
+   */
+  getCurrentNetwork:
+    | undefined
+    | (() => {
+        url: string;
+        name: string;
+        chainId: string;
+      });
+
   getProductInfo:
     | undefined
     | (() => {
