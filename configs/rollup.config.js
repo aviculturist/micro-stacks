@@ -1,12 +1,10 @@
 import path from 'path';
-import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 import json from '@rollup/plugin-json';
 
 const REACT_NATIVE_BUILD = !!process.env.REACT_NATIVE;
-const createBabelConfig = require('../babel.config');
 const extensions = ['.js', '.ts', '.tsx', '.json'];
 const { root } = path.parse(process.cwd());
 
@@ -14,28 +12,12 @@ function external(id) {
   return (
     (!id.startsWith('.') && !id.startsWith(root)) ||
     id.startsWith('micro-stacks') ||
+    id.startsWith('@noble') ||
     id === 'react' ||
     id === 'jotai' ||
     id === 'crypto' ||
     id.includes('.test.')
   );
-}
-
-const bigIntPackages = ['crypto', 'clarity', 'transactions', 'common', 'bip32'];
-
-function getBabelOptions(targets, packageName) {
-  const config = createBabelConfig({ env: env => env === 'build' }, targets);
-  const plugins = config.plugins;
-  if (REACT_NATIVE_BUILD && bigIntPackages.includes(packageName)) {
-    plugins.unshift('@babel/plugin-syntax-bigint', 'babel-plugin-bigint-to-jsbi');
-  }
-  return {
-    ...config,
-    plugins,
-    extensions,
-    comments: false,
-    babelHelpers: 'bundled',
-  };
 }
 
 function getEsbuild(target) {
@@ -96,12 +78,7 @@ function createCommonJSConfig(input) {
       json({
         compact: true,
       }),
-      babel(
-        getBabelOptions(
-          { browsers: 'last 2 versions' },
-          input.replace('src/', '').replace('.ts', '')
-        )
-      ),
+      getEsbuild('node12'),
     ].filter(Boolean),
   };
 }

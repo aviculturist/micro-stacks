@@ -1,5 +1,25 @@
 # micro-stacks
 
+## 0.1.17
+
+### Patch Changes
+
+- [#72](https://github.com/fungible-systems/micro-stacks/pull/72) [`65a04522`](https://github.com/fungible-systems/micro-stacks/commit/65a045225995301ce2c3e7443defb1a8613d676a) Thanks [@aulneau](https://github.com/aulneau)! - Fixes the top level import for @noble/hashes, bumps versions
+
+## 0.1.16
+
+### Patch Changes
+
+- [#71](https://github.com/fungible-systems/micro-stacks/pull/71) [`496b9074`](https://github.com/fungible-systems/micro-stacks/commit/496b90747dccf2bc0b0bbe2e44b4101603a364b4) Thanks [@aulneau](https://github.com/aulneau)! - This removes a hidden usage of Buffer, and reverts the build changes"
+
+* [#66](https://github.com/fungible-systems/micro-stacks/pull/66) [`a6d30cb6`](https://github.com/fungible-systems/micro-stacks/commit/a6d30cb609687d18ef82435e58916f1123797c1e) Thanks [@aviculturist](https://github.com/aviculturist)! - Adds a number of missing accounts api fetchers and tests for: fetchAccountTransactionWithTransfers, fetchAccountNonces, fetchAccountAssets, fetchAccountStxInbound, fetchAccountNftEvents, fetchAccountInfo
+
+## 0.1.15
+
+### Patch Changes
+
+- [#68](https://github.com/fungible-systems/micro-stacks/pull/68) [`1744101b`](https://github.com/fungible-systems/micro-stacks/commit/1744101bb5bb2041023a2e519d150237d55335f2) Thanks [@aulneau](https://github.com/aulneau)! - This fixes a small enum export issue related to building external libs.
+
 ## 0.1.13
 
 ### Patch Changes
